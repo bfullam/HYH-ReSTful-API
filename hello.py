@@ -1,13 +1,12 @@
-import web
+import os
+from flask import Flask
 
-urls = (
-    '/', 'index'
-)
+app = Flask(__name__)
 
-class index:
-    def GET(self):
-        return "Hello, world!"
+@app.route("/")
+def hello():
+    return "Hello world!"
 
 if __name__ == "__main__":
-    app = web.application(urls, globals())
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
